@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>George Soriano — Solo Guitarist</title>
+
+  <!-- Preload Font -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+    
+    <div class="brand" style="display:flex;align-items:center;gap:14px;">
+      <div>
+        <h1 class="signature">George Soriano</h1>
+        <p class="tagline">Acoustic & Electric — Solo Guitarist</p>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#media" class="nav-link">Media</a>
+      <a href="#booking" class="nav-link">Booking</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <a class="small" href="George Soriano EPK.pdf" download>Download EPK</a>
+  
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div style="flex:1">
+      <h2>Live Acoustic & Electric Guitar</h2>
+      <p class="tagline">Instrumental arrangements of well-loved songs — perfect for intimate ambience or lively settings.</p>
+    
+      <div class="cta">
+        <button class="btn primary" onclick="goto('#booking')">Book now</button>
+        <a href="#media" class="btn">Listen</a>
+      </div>
+
+      <h3>About</h3>
+        <p class="tagline">George Soriano is a South Wales based guitarist who transforms well-known songs into elegant instrumental arrangements. With over ten years of performance experience, he has opened for artists such as The Three Degrees and Three Cane Whale. A graduate of the Institute of Contemporary Music Performance, London, George brings skill and musicality to every performance.</p>
+    </div>
+
+    <div style="width:380px;">
+      <div class="card">
+        <img src="media/GEORGE_HI-RES-45.jpg" loading="lazy" alt="Live performance photo">
+      </div>
+    </div>
+  </section>
+
+  <section id="repertory">
+    <div class="card">
+      <strong>Repertoire Highlights</strong>
+      <ul class="repertoire">
+        <li>Here Comes the Sun — The Beatles</li>
+        <li>Every Breath You Take — The Police</li>
+        <li>Can’t Help Falling in Love — Elvis Presley</li>
+        <li>Superstition — Stevie Wonder</li>
+        <li>Oye Como Va — Santana</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- MEDIA -->
+  <section id="media">
+    <h3>Media</h3>
+
+    <div class="card">
+      <strong>Gallery</strong>
+      
+      <div class="gallery-grid">
+        <img src="media/live_performance1.jpg" loading="lazy" alt="">
+        <img src="media/GEORGE_HI-RES-4.jpg" loading="lazy" alt="">
+        <img src="media/George pic 2 (1).jpg" loading="lazy" alt="">
+        <img src="media/G_L_wed-1448 (1).jpg" loading="lazy" alt="">
+        <img src="media/George guitar pic 2.jpg" loading="lazy" alt="">
+        <img src="media/0c7cc7a7-2acc-460d-9ab7-0b7d97ef9ec8.JPG" loading="lazy" alt="">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <h3>Booking & Contact</h3>
+
+    <div class="card">
+      <form id="bookingForm">
+
+        <div class="form-row">
+          <input name="name" placeholder="Full name" required>
+          <input name="phone" placeholder="Phone number" required>
+        </div>
+
+        <div class="form-row">
+          <input name="email" placeholder="Email" required>
+          <input type="date" name="date" required>
+        </div>
+
+        <select name="setType">
+          <option value="acoustic">Acoustic</option>
+          <option value="electric">Electric</option>
+          <option value="mix">Mix (Acoustic + Electric)</option>
+        </select>
+
+        <textarea name="notes" rows="4" placeholder="Event details..."></textarea>
+
+        <button class="btn primary" type="submit">Send Request</button>
+        <button type="button" class="btn" onclick="mailtoFallback()">Send via Email</button>
+        <p id="formMessage" class="note"></p>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h3>Contact</h3>
+    <div class="card">
+      <p>
+        📞 07875 373449<br>
+        ✉️ <a href="mailto:georgesymusic@gmail.com">georgesymusic@gmail.com</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+
+<footer>
+  © George Soriano — Solo Guitarist
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
