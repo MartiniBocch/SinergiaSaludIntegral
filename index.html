@@ -107,10 +107,12 @@
 
         <div class="form-row">
           <input name="email" placeholder="Email" required>
-          <input type="date" name="date" required>
+          <label for="event-date">Event Date:</label>
+          <input id="event-date" type="date" name="date" required>
         </div>
 
-        <select name="setType">
+        <label for="set-type">Choose an option:</label>
+        <select id="set-type">
           <option value="acoustic">Acoustic</option>
           <option value="electric">Electric</option>
           <option value="mix">Mix (Acoustic + Electric)</option>
