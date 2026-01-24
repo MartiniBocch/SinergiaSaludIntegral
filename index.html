@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SparkleClean provides dependable residential and commercial cleaning services with easy online quotes.">
-    <title>SparkleClean | Professional Cleaning Services</title>
+    <meta name="description" content="Sinergia Salud Integral offers odontologic and medical care with integrated appointment notes and patient registry tools.">
+    <title>Sinergia Salud Integral | Odontologic & Medical Care</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,110 +15,244 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1>Sparkle<span class="highlight">Clean</span></h1>
+                <h1>Sinergia <span class="highlight">Salud Integral</span></h1>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Request Info</a></li>
+            <nav aria-label="Primary">
+                <ul class="tab-nav" role="tablist">
+                    <li><button class="tab-link active" id="tab-btn-principal" type="button" data-tab="tab-principal" aria-controls="tab-principal">Principal</button></li>
+                    <li><button class="tab-link" id="tab-btn-notes" type="button" data-tab="tab-notes" aria-controls="tab-notes">Appointment Notes</button></li>
+                    <li><button class="tab-link" id="tab-btn-patients" type="button" data-tab="tab-patients" aria-controls="tab-patients">Patient Registry</button></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" id="home">
-            <div class="container">
-                <h2>A Cleaner Space. A Clearer Mind.</h2>
-                <p>Trusted residential and commercial cleaning services tailored to your schedule and standards.</p>
-                <a class="btn" href="#contact">Get a Free Estimate</a>
-            </div>
-        </section>
+        <section class="tabs-app">
+            <div class="tab-panel active" id="tab-principal" aria-labelledby="tab-btn-principal">
+                <section class="hero">
+                    <div class="container">
+                        <p class="eyebrow">Odontologic & Medical Services</p>
+                        <h2>Integrated Care for Every Smile and Every Patient</h2>
+                        <p>We combine dental excellence and medical follow-up in one clinic so your care plan stays clear, coordinated, and compassionate.</p>
+                        <div class="hero-actions">
+                            <a class="btn" href="#clinic-contact">Schedule an Appointment</a>
+                            <a class="btn btn-outline" href="#clinic-services">Explore Services</a>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="services" id="services">
-            <div class="container">
-                <h2>Cleaning Services That Shine</h2>
-                <div class="services-grid">
-                    <article class="service">
-                        <i class="fa-solid fa-house"></i>
-                        <h3>Home Cleaning</h3>
-                        <p>Recurring and one-time cleans that keep every room fresh, tidy, and guest-ready.</p>
-                    </article>
-                    <article class="service">
-                        <i class="fa-solid fa-building"></i>
-                        <h3>Office Cleaning</h3>
-                        <p>Create a healthier workplace with reliable daily, weekly, or custom office service.</p>
-                    </article>
-                    <article class="service">
-                        <i class="fa-solid fa-spray-can-sparkles"></i>
-                        <h3>Deep Cleaning</h3>
-                        <p>Tackle buildup and overlooked spaces with a detailed top-to-bottom clean.</p>
-                    </article>
-                    <article class="service">
-                        <i class="fa-solid fa-truck-fast"></i>
-                        <h3>Move In/Out</h3>
-                        <p>Leave a lasting impression with a comprehensive move-in or move-out cleaning package.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+                <section class="services" id="clinic-services">
+                    <div class="container">
+                        <h2>Care Designed Around Your Needs</h2>
+                        <p class="section-lead">From preventive dentistry to ongoing medical support, our team works together to deliver complete clinical attention in every visit.</p>
+                        <div class="services-grid">
+                            <article class="service">
+                                <i class="fa-solid fa-tooth" aria-hidden="true"></i>
+                                <h3>Preventive Dentistry</h3>
+                                <p>Comprehensive cleanings, digital imaging, and early diagnostics that protect long-term oral health.</p>
+                            </article>
+                            <article class="service">
+                                <i class="fa-solid fa-syringe" aria-hidden="true"></i>
+                                <h3>Restorative Treatments</h3>
+                                <p>Fillings, crowns, and rehabilitation plans that restore comfort, function, and confident smiles.</p>
+                            </article>
+                            <article class="service">
+                                <i class="fa-solid fa-stethoscope" aria-hidden="true"></i>
+                                <h3>Medical Consultations</h3>
+                                <p>Clinical assessments, follow-up planning, and coordinated referrals that keep your health on track.</p>
+                            </article>
+                            <article class="service">
+                                <i class="fa-solid fa-notes-medical" aria-hidden="true"></i>
+                                <h3>Care Plan Coordination</h3>
+                                <p>Integrated records, appointment summaries, and structured next steps shared across the care team.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="about" id="about">
-            <div class="container">
-                <h2>Why Clients Choose SparkleClean</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>We are a locally owned cleaning company focused on consistency, communication, and care. Every visit is guided by a clear checklist and completed by trained, background-checked professionals.</p>
-                        <ul class="about-features">
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Insured and background-checked cleaners</li>
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Eco-friendly products available</li>
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Flexible plans with no long-term contracts</li>
-                            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Satisfaction guaranteed on every visit</li>
-                        </ul>
-                        <a class="btn" href="#contact">Request More Information</a>
+                <section class="about" id="clinic-about">
+                    <div class="container">
+                        <h2>Why Patients Choose Sinergia</h2>
+                        <div class="about-content">
+                            <div class="about-text">
+                                <p>Sinergia Salud Integral was created to remove the gap between dental and medical care. Our clinicians document every visit clearly, share key findings, and guide patients through the next best decision with empathy.</p>
+                                <ul class="about-features">
+                                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Unified dental and medical histories</li>
+                                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Structured notes for each appointment</li>
+                                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Personalized treatment and prevention plans</li>
+                                    <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Clear communication for families and caregivers</li>
+                                </ul>
+                                <a class="btn" href="#clinic-contact">Talk to the Care Team</a>
+                            </div>
+                            <div class="about-image">
+                                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80" alt="Dentist and doctor reviewing a patient chart together">
+                            </div>
+                        </div>
                     </div>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=1200&q=80" alt="Cleaner wiping a kitchen counter">
-                    </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <section class="contact" id="contact">
-            <div class="container">
-                <h2>Request More Information</h2>
-                <p>Tell us what you need and we will follow up with pricing, availability, and the best cleaning plan for your space.</p>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input id="name" name="name" type="text" autocomplete="name" required>
+                <section class="contact" id="clinic-contact">
+                    <div class="container">
+                        <h2>Plan the Next Visit</h2>
+                        <p>Share the type of care you need and we will coordinate the right professional, time, and preparation steps before you arrive.</p>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input id="name" name="name" type="text" autocomplete="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input id="email" name="email" type="email" autocomplete="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Requested Service</label>
+                                <select id="service" name="service" required>
+                                    <option value="" selected disabled>Select the visit type</option>
+                                    <option value="dental-preventive">Preventive dental care</option>
+                                    <option value="dental-restorative">Restorative dental treatment</option>
+                                    <option value="medical-consultation">Medical consultation</option>
+                                    <option value="care-coordination">Integrated care coordination</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="details">Clinical Notes or Requests</label>
+                                <textarea id="details" name="details" rows="5" placeholder="Symptoms, goals for the visit, medications, or anything the care team should review." required></textarea>
+                            </div>
+                            <button class="btn" type="submit">Send Request</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input id="email" name="email" type="email" autocomplete="email" required>
+                </section>
+            </div>
+
+            <div class="tab-panel" id="tab-notes" aria-labelledby="tab-btn-notes">
+                <section class="panel-section notes-section">
+                    <div class="container panel-grid">
+                        <div class="panel-card">
+                            <h2>Appointment Notes</h2>
+                            <p>Document each consultation in a consistent structure so every provider can follow the clinical reasoning and the next action.</p>
+                            <form id="notesForm" class="stack-form">
+                                <div class="form-group">
+                                    <label for="noteDate">Appointment Date</label>
+                                    <input id="noteDate" name="noteDate" type="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notePatient">Patient Name</label>
+                                    <input id="notePatient" name="notePatient" type="text" placeholder="e.g., Laura Gómez" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="noteDoctor">Doctor / Specialist</label>
+                                    <input id="noteDoctor" name="noteDoctor" type="text" placeholder="e.g., Dra. Martínez" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="noteType">Visit Type</label>
+                                    <select id="noteType" name="noteType" required>
+                                        <option value="" selected disabled>Select a visit type</option>
+                                        <option value="odontology">Odontology</option>
+                                        <option value="medical">Medical</option>
+                                        <option value="follow-up">Follow-up</option>
+                                        <option value="emergency">Emergency</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="noteSummary">Clinical Summary</label>
+                                    <textarea id="noteSummary" name="noteSummary" rows="6" placeholder="Assessment, findings, procedures performed, and key considerations." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notePlan">Plan & Next Steps</label>
+                                    <textarea id="notePlan" name="notePlan" rows="4" placeholder="Medications, instructions, follow-up timing, and referrals." required></textarea>
+                                </div>
+                                <button class="btn" type="submit">Save Note</button>
+                            </form>
+                        </div>
+                        <div class="panel-card panel-card-muted">
+                            <div class="panel-card-header">
+                                <h3>Saved Notes</h3>
+                                <p>Use this running log during the day to review what was documented for each appointment.</p>
+                            </div>
+                            <div id="notesList" class="notes-list" aria-live="polite">
+                                <p class="empty-state" id="notesEmpty">No appointment notes saved yet.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567" required>
+                </section>
+            </div>
+
+            <div class="tab-panel" id="tab-patients" aria-labelledby="tab-btn-patients">
+                <section class="panel-section patients-section">
+                    <div class="container panel-grid patients-grid">
+                        <div class="panel-card">
+                            <h2>Patient Registry</h2>
+                            <p>Register new patients with essential clinical and administrative details so their care journey starts with complete information.</p>
+                            <form id="patientForm" class="stack-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="patientName">Full Name</label>
+                                        <input id="patientName" name="patientName" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="patientId">Document ID</label>
+                                        <input id="patientId" name="patientId" type="text" placeholder="ID / Passport" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="patientBirthdate">Birthdate</label>
+                                        <input id="patientBirthdate" name="patientBirthdate" type="date" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="patientPhone">Phone Number</label>
+                                        <input id="patientPhone" name="patientPhone" type="tel" autocomplete="tel" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="patientEmail">Email</label>
+                                        <input id="patientEmail" name="patientEmail" type="email" autocomplete="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="patientInsurance">Insurance / Plan</label>
+                                        <input id="patientInsurance" name="patientInsurance" type="text" placeholder="Provider or private" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="patientNotes">Clinical Alerts</label>
+                                    <textarea id="patientNotes" name="patientNotes" rows="4" placeholder="Allergies, chronic conditions, or important alerts for the care team." required></textarea>
+                                </div>
+                                <button class="btn" type="submit">Register Patient</button>
+                            </form>
+                        </div>
+                        <div class="panel-card panel-card-muted">
+                            <div class="panel-card-header">
+                                <h3>Registered Patients</h3>
+                                <p>This quick registry helps the front desk and clinicians confirm identity, contact details, and key alerts.</p>
+                            </div>
+                            <div class="table-wrapper">
+                                <table class="data-table" id="patientTable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Patient</th>
+                                            <th scope="col">Document</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Insurance</th>
+                                            <th scope="col">Alerts</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="patientTableBody">
+                                        <tr id="patientEmpty">
+                                            <td colspan="6" class="empty-state">No patients registered yet.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="service">Service Type</label>
-                        <select id="service" name="service" required>
-                            <option value="" selected disabled>Select a service</option>
-                            <option value="home">Home cleaning</option>
-                            <option value="office">Office cleaning</option>
-                            <option value="deep">Deep cleaning</option>
-                            <option value="move">Move in/out cleaning</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="details">What would you like cleaned?</label>
-                        <textarea id="details" name="details" rows="5" placeholder="Share any special requests, room count, or timing needs." required></textarea>
-                    </div>
-                    <button class="btn" type="submit">Send Request</button>
-                </form>
+                </section>
             </div>
         </section>
     </main>
@@ -127,38 +261,38 @@
         <div class="container">
             <div class="footer-content">
                 <section class="footer-section">
-                    <h3>About SparkleClean</h3>
-                    <p>Professional cleaning that makes homes happier and workplaces healthier. We show up on time and finish with care.</p>
+                    <h3>Sinergia Salud Integral</h3>
+                    <p>Odontologic and medical services working together to deliver complete, human-centered care.</p>
                 </section>
                 <section class="footer-section">
-                    <h3>Popular Services</h3>
+                    <h3>Clinical Focus</h3>
                     <ul>
-                        <li><a href="#services">Routine home cleaning</a></li>
-                        <li><a href="#services">Office maintenance</a></li>
-                        <li><a href="#services">Deep seasonal cleaning</a></li>
-                        <li><a href="#services">Move in/out cleaning</a></li>
+                        <li><a href="#clinic-services">Preventive dentistry</a></li>
+                        <li><a href="#clinic-services">Restorative care</a></li>
+                        <li><a href="#clinic-services">Medical consultations</a></li>
+                        <li><a href="#clinic-services">Coordinated care plans</a></li>
                     </ul>
                 </section>
                 <section class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li><i class="fa-solid fa-phone" aria-hidden="true"></i>(555) 987-6543</li>
-                        <li><i class="fa-solid fa-envelope" aria-hidden="true"></i>hello@sparkleclean.co</li>
-                        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Serving the greater metro area</li>
+                        <li><i class="fa-solid fa-phone" aria-hidden="true"></i>(555) 010-2026</li>
+                        <li><i class="fa-solid fa-envelope" aria-hidden="true"></i>contacto@sinergiasalud.com</li>
+                        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Av. Salud 123, Centro Clínico</li>
                     </ul>
                 </section>
                 <section class="footer-section">
                     <h3>Hours</h3>
                     <ul>
-                        <li>Mon–Fri: 8am – 6pm</li>
-                        <li>Saturday: 9am – 4pm</li>
-                        <li>Sunday: By request</li>
+                        <li>Mon–Fri: 8:00 – 19:00</li>
+                        <li>Saturday: 9:00 – 14:00</li>
+                        <li>Emergency: On call</li>
                     </ul>
                 </section>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <span id="year"></span> SparkleClean. All rights reserved.</p>
+            <p>&copy; <span id="year"></span> Sinergia Salud Integral. All rights reserved.</p>
         </div>
     </footer>
 
