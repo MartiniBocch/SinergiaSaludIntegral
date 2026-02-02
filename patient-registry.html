@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Patient registry page for Sinergia Salud Integral.">
+    <title>Sinergia Salud Integral | Patient Registry</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+        <div class="logo">
+            <h1>Sinergia <span class="highlight">Salud Integral</span></h1>
+        </div>
+        <nav aria-label="Primary">
+            <ul class="tab-nav">
+                <li><a class="tab-link" href="index.html">Principal</a></li>
+                <li><a class="tab-link" href="appointment-notes.html">Appointment Notes</a></li>
+                <li><a class="tab-link active" href="patient-registry.html" aria-current="page">Patient Registry</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="panel-section patients-section">
+            <div class="container panel-grid patients-grid">
+                <div class="panel-card">
+            <h2>Registro de Paciente</h2>
+            <p>Register new patients with essential clinical and administrative details so their care journey starts with complete information.</p    >
+
+            <form id="patientForm" class="stack-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patientName">Nombre Completo</label>
+                  <input id="patientName" name="patientName" type="text" required>
+                </div >
+
+                <div class="form-group">
+                  <label for="patientAddress">Dirección</label>
+                  <input id="patientAddress" name="patientAddress" type="text" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="patientGender">Género</label>
+                  <select id="patientGender" name="patientGender" required>
+                    <option value="" selected disabled>Seleccione el género</option>
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="other">Otro</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="patientId">Cédula</label>
+                  <input id="patientId" name="patientId" type="number" placeholder="XXXXXXXX" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patientBirthdate">Fecha de Nacimiento</label>
+                  <input id="patientBirthdate" name="patientBirthdate" type="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="patientBirthplace">Lugar de nacimiento</label>
+                  <input id="patientBirthplace" name="patientBirthplace" type="text" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="patientPhone">Numero telefonico</label>
+                  <input id="patientPhone" name="patientPhone" type="tel" autocomplete="tel" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="patientEmergencyName">Contacto de emergencia</label>
+                  <input id="patientEmergencyName" name="patientEmergencyName" type="text" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="patientEmergencyPhone">Teléfono de emergencia</label>
+                  <input id="patientEmergencyPhone" name="patientEmergencyPhone" type="tel" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="patientEmail">Email</label>
+                  <input id="patientEmail" name="patientEmail" type="email" autocomplete="email" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="patientInsurance">Insurance / Plan</label>
+                  <input id="patientInsurance" name="patientInsurance" type="text" placeholder="Provider or private" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="patientReason">Motivo de consulta</label>
+                <textarea id="patientReason" name="patientReason" rows="4" placeholder="Allergies, chronic conditions, or important alerts for the care team." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <h3>Antecedentes Médicos Personales</h3>
+
+                <fieldset>
+                    <legend>Cardiovascular</legend>
+                    <label><input type="checkbox" name="cardio[]" value="Hipertensión"> Hipertensión</label>
+                    <label><input type="checkbox" name="cardio[]" value="Hipotensión"> Hipotensión</label>
+                    <label><input type="checkbox" name="cardio[]" value="Taquicardia"> Taquicardia</label>
+                    <label><input type="checkbox" name="cardio[]" value="Angina de pecho"> Angina de P.</label>
+                    <label><input type="checkbox" name="cardio[]" value="Infarto"> Infarto</label>
+                    <label><input type="checkbox" name="cardio[]" value="Insuficiencia cardiaca"> Insuficiencia C.</label>
+                    <label><input type="checkbox" name="cardio[]" value="Disnea"> Disnea</label>
+                    <label>Otro: <input type="text" name="cardio_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Endocrinos</legend>
+                  <label><input type="checkbox" name="endocrino[]" value="Hipertiroidismo"> Hipertiroidismo</label>
+                  <label><input type="checkbox" name="endocrino[]" value="Hipotiroidismo"> Hipotiroidismo</label>
+                  <label><input type="checkbox" name="endocrino[]" value="Diabetes"> Diabetes</label>
+                  <label>Otro: <input type="text" name="endocrino_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Gastrointestinales</legend>
+                  <label><input type="checkbox" name="gastro[]" value="Gastritis"> Gastritis</label>
+                  <label><input type="checkbox" name="gastro[]" value="Reflujo gástrico"> Reflujo gástrico</label>
+                  <label><input type="checkbox" name="gastro[]" value="Úlceras gástricas"> Úlceras gástricas</label>
+                  <label>Otro: <input type="text" name="gastro_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Respiratorio</legend>
+                  <label><input type="checkbox" name="resp[]" value="Sinusitis"> Sinusitis</label>
+                  <label><input type="checkbox" name="resp[]" value="Asma"> Asma</label>
+                  <label><input type="checkbox" name="resp[]" value="EPOC"> EPOC</label>
+                  <label><input type="checkbox" name="resp[]" value="Rinitis"> Rinitis</label>
+                  <label><input type="checkbox" name="resp[]" value="Neumonía"> Neumonía</label>
+                  <label>Otro: <input type="text" name="resp_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Infecto-contagiosas</legend>
+                  <label><input type="checkbox" name="infecto[]" value="Tuberculosis"> Tuberculosis</label>
+                  <label><input type="checkbox" name="infecto[]" value="Sífilis"> Sífilis</label>
+                  <label><input type="checkbox" name="infecto[]" value="SIDA"> SIDA</label>
+                  <label><input type="checkbox" name="infecto[]" value="VIH"> VIH</label>
+                  <label><input type="checkbox" name="infecto[]" value="Hepatitis"> Hepatitis A-B-C</label>
+                  <label><input type="checkbox" name="infecto[]" value="Herpes"> Herpes</label>
+                  <label><input type="checkbox" name="infecto[]" value="Influenza"> Influenza</label>
+                  <label>Otro: <input type="text" name="infecto_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Renales</legend>
+                  <label><input type="checkbox" name="renal[]" value="Cálculos renales"> Cálculos R.</label>
+                  <label><input type="checkbox" name="renal[]" value="Insuficiencia renal"> Insuficiencia renal</label>
+                  <label>Otro: <input type="text" name="renal_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Alergias</legend>
+                  <label><input type="checkbox" name="alergias[]" value="Medicamentos"> Medicamentos</label>
+                  <label><input type="checkbox" name="alergias[]" value="Yodo"> Yodo</label>
+                  <label><input type="checkbox" name="alergias[]" value="Alimentos"> Alimentos</label>
+                  <label><input type="checkbox" name="alergias[]" value="Látex"> Látex</label>
+                  <label>Otro: <input type="text" name="alergias_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Neurológicos</legend>
+                  <label><input type="checkbox" name="neuro[]" value="Convulsiones"> Convulsiones</label>
+                  <label><input type="checkbox" name="neuro[]" value="Parkinson"> Parkinson</label>
+                  <label><input type="checkbox" name="neuro[]" value="Alzheimer"> Alzheimer</label>
+                  <label><input type="checkbox" name="neuro[]" value="ACV"> ACV</label>
+                  <label><input type="checkbox" name="neuro[]" value="Tic"> Tic</label>
+                  <label><input type="checkbox" name="neuro[]" value="Epilepsia"> Epilepsia</label>
+                  <label>Otro: <input type="text" name="neuro_other"></label>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Intervenciones quirúrgicas</legend>
+                  <input type="text" name="cirugias" placeholder="Describir">
+                </fieldset>
+
+                <fieldset>
+                  <legend>Cáncer</legend>
+                  <input type="text" name="cancer" placeholder="Especificar">
+                </fieldset>
+              </div>
+
+              <button class="btn" type="submit">Register Patient</button>
+            </form>
+          </div>
+
+          <div class="panel-card panel-card-muted">
+            <div class="panel-card-header">
+              <h3>Registered Patients</h3>
+              <p>This quick registry helps the front desk and clinicians confirm identity, contact details, and key alerts.</p>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="data-table" id="patientTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Patient</th>
+                    <th scope="col">Document</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Insurance</th>
+                    <th scope="col">Alerts</th>
+                  </tr>
+                </thead>
+                <tbody id="patientTableBody">
+                  <tr id="patientEmpty">
+                    <td colspan="6" class="empty-state">No patients registered yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <section class="footer-section">
+          <h3>Sinergia Salud Integral</h3>
+          <p>Odontologic and medical services working together to deliver complete, human-centered care.</p>
+        </section>
+        <section class="footer-section">
+          <h3>Clinical Focus</h3>
+          <ul>
+            <li><a href="index.html#clinic-services">Preventive dentistry</a></li>
+            <li><a href="index.html#clinic-services">Restorative care</a></li>
+            <li><a href="index.html#clinic-services">Medical consultations</a></li>
+            <li><a href="index.html#clinic-services">Coordinated care plans</a></li>
+          </ul>
+        </section>
+        <section class="footer-section">
+          <h3>Contact</h3>
+          <ul>
+            <li><i class="fa-solid fa-phone" aria-hidden="true"></i>(555) 010-2026</li>
+            <li><i class="fa-solid fa-envelope" aria-hidden="true"></i>contacto@sinergiasalud.com</li>
+            <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Av. Salud 123, Centro Clínico</li>
+          </ul>
+        </section>
+        <section class="footer-section">
+          <h3>Hours</h3>
+          <ul>
+            <li>Mon–Fri: 8:00 – 19:00</li>
+            <li>Saturday: 9:00 – 14:00</li>
+            <li>Emergency: On call</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> Sinergia Salud Integral. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
