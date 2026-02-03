@@ -37,7 +37,7 @@
             <h2>Registro de Paciente</h2>
             <p>Register new patients with essential clinical and administrative details so their care journey starts with complete information.</p    >
 
-            <form id="patientRegistryForm" class="stack-form">
+            <form id="patientRegistryForm" class="stack-form" novalidate>
 
             <!-- 1) Datos personales -->
             <section class="form-section" aria-labelledby="sec-datos">
@@ -227,18 +227,11 @@
                 <input class="consent-inline" id="consentCI" name="consentCI" type="text" placeholder="Cédula" required>
                 declaro haber sido informado(a) de forma clara y comprensible sobre mi diagnóstico, los riesgos, beneficios,
                 posibles complicaciones (intra y postoperatorias) y alternativas de los tratamientos explicados por mi odontólogo(a).
-                <br><br>
+                <br>
                 Entiendo los riesgos inherentes a la práctica odontológica y confirmo que toda la información sobre mi historial
                 médico es verdadera y completa. Por medio de la presente, autorizo a la Dra. a realizar los procedimientos
                 odontológicos necesarios para mi caso.
               </p>
-
-              <div class="form-row">
-                <div class="form-group span-2">
-                  <label for="consentDate">Fecha</label>
-                  <input id="consentDate" name="consentDate" type="date" readonly required>
-                </div>
-              </div>
 
               <div class="form-group">
                 <label for="signatureCanvas">Firma</label>
@@ -252,10 +245,16 @@
                     Limpiar firma
                   </button>
                 </div>
-
                 <!-- This hidden input will store the signature as a data URL (base64 PNG) -->
                 <input type="hidden" id="signatureData" name="signatureData" required>
                 <p class="helper-text">Firme con el dedo o lápiz en la tableta.</p>
+              </div>
+
+                <div class="form-row">
+                <div class="form-group span-1">
+                  <label for="consentDate">Fecha</label>
+                  <input id="consentDate" name="consentDate" type="date" readonly required>
+                </div>
               </div>
             </section>
 
@@ -281,15 +280,18 @@
                       <th scope="col">Phone</th>
                       <th scope="col">Insurance</th>
                       <th scope="col">Alerts</th>
+                      <th scope="col">Actions</th>
                     </tr>
                   </thead>
+
                   <tbody id="patientTableBody">
                     <tr id="patientEmpty">
-                      <td colspan="6" class="empty-state">No patients registered yet.</td>
+                      <td colspan="7" class="empty-state">No patients registered yet.</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+
             </div>
           </div>
         </div>

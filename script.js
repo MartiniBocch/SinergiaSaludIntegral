@@ -349,3 +349,159 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("patientForm");
+  const tbody = document.getElementById("patientTableBody");
+  const emptyRow = document.getElementById("patientEmpty");
+
+  if (!form || !tbody) return;
+
+  const STORAGE_KEY = "sinergia_patients_full_v1";
+
+  const loadPatients = () => {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  };
+
+  const savePatients = (patients) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(patients));
+  };
+
+  // Reads ALL fields from the form (including checkbox groups)
+  function getFormDataObject(formEl) {
+    const fd = new FormData(formEl);
+    const obj = {};
+
+    for (const [key, value] of fd.entries()) {
+      // handle multiple values like cardio[] checkboxes
+      if (key.endsWith("[]")) {
+        const cleanKey = key.slice(0, -2);
+        if (!obj[cleanKey]) obj[cleanKey] = [];
+        obj[cleanKey].push(value);
+      } else {
+        // if repeated keys happen, convert to array
+        if (obj[key] !== undefined) {
+          obj[key] = Array.isArray(obj[key]) ? obj[key] : [obj[key]];
+          obj[key].push(value);
+        } else {
+          obj[key] = value;
+        }
+      }
+    }
+
+    // Ensure groups exist even if nothing checked
+    const groups = ["cardio","endocrino","gastro","resp","infecto","renal","alergias","neuro","habits"];
+    groups.forEach(g => { if (!obj[g]) obj[g] = []; });
+
+    return obj;
+  }
+
+  // Build a quick alerts string from the full record
+  function buildAlerts(p) {
+    const alerts = [];
+
+    if (p.alergias?.length) alerts.push(`Alergias: ${p.alergias.join(", ")}`);
+    if (p.infecto?.length) alerts.push(`Infecto: ${p.infecto.join(", ")}`);
+
+    if (p.cardio?.includes("Hipertensión")) alerts.push("Hipertensión");
+    if (p.endocrino?.includes("Diabetes")) alerts.push("Diabetes");
+
+    // Include “other” fields if filled
+    const otherFields = [
+      p.cardio_other, p.endocrino_other, p.gastro_other, p.resp_other,
+      p.infecto_other, p.renal_other, p.alergias_other, p.neuro_other
+    ].filter(Boolean);
+
+    if (otherFields.length) alerts.push(`Otros: ${otherFields.join(" | ")}`);
+
+    return alerts.length ? alerts.join(" • ") : "—";
+  }
+
+  // Render summary rows
+  function renderPatients() {
+    const patients = loadPatients();
+    tbody.innerHTML = "";
+
+    if (!patients.length) {
+      if (emptyRow) tbody.appendChild(emptyRow);
+      return;
+    }
+
+    patients.forEach((p, index) => {
+        const tr = document.createElement("tr");
+
+        const name = p.patientName || p.consentName || "—";
+        const doc = p.patientId || p.consentCI || "—";
+        const age = p.patientAge || "—";
+        const phone = p.patientPhone || "—";
+        const ins = p.patientInsurance || "—";
+        const alerts = buildAlerts(p);
+
+        tr.innerHTML = `
+        <td><strong>${escapeHtml(name)}</strong></td>
+        <td>${escapeHtml(doc)}</td>
+        <td>${escapeHtml(String(age))}</td>
+        <td>${escapeHtml(phone)}</td>
+        <td>${escapeHtml(ins)}</td>
+        <td>${escapeHtml(alerts)}</td>
+        <td>
+            <button type="button" class="btn btn-outline btn-small" data-action="view" data-index="${index}">View</button>
+            <button type="button" class="btn btn-outline btn-small" data-action="delete" data-index="${index}">Delete</button>
+        </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+  // Actions: view full saved record / delete
+tbody.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-action]");
+    if (!btn) return;
+
+    const patients = loadPatients();
+    const idx = Number(btn.dataset.index);
+    const action = btn.dataset.action;
+
+    if (action === "delete") {
+        patients.splice(idx, 1);
+        savePatients(patients);
+        renderPatients();
+    }
+
+    if (action === "view") {
+      // For now show JSON; later we can open a modal / dedicated patient details page
+        const patient = patients[idx];
+        console.log("Full patient record:", patient);
+        alert("Open DevTools Console to see full saved record (console.log).");
+    }
+});
+
+    // Save everything on submit
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const record = getFormDataObject(form);
+        record.createdAt = new Date().toISOString();
+
+        const patients = loadPatients();
+        patients.unshift(record);
+        savePatients(patients);
+
+        form.reset();
+
+        // If you auto-fill consentDate or have signature pad, you may need to re-init those after reset.
+        renderPatients();
+    });
+
+    function escapeHtml(str) {
+        return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    renderPatients();
+});

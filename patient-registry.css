@@ -147,3 +147,9 @@
 .data-table tbody tr:hover td {
     background: rgba(11, 110, 153, 0.04);
 }
+
+.btn-small {
+    padding: 8px 12px;
+    font-size: 14px;
+    box-shadow: none;
+}
