@@ -152,24 +152,43 @@ const patientForm = document.querySelector('#patientForm');
 const patientTableBody = document.querySelector('#patientTableBody');
 const patientEmpty = document.querySelector('#patientEmpty');
 
-const calculateAge = (birthdateValue) => {
-    const birthdate = new Date(`${birthdateValue}T00:00:00`);
-    if (Number.isNaN(birthdate.getTime())) {
-        return '—';
+document.addEventListener("DOMContentLoaded", () => {
+    const birthdateInput = document.getElementById("patientBirthdate");
+    const ageInput = document.getElementById("patientAge");
+
+    if (!birthdateInput || !ageInput) return;
+
+    function calculateAge(dateString) {
+        if (!dateString) return "";
+
+        const today = new Date();
+        const birthDate = new Date(dateString);
+
+        // basic validation
+        if (Number.isNaN(birthDate.getTime())) return "";
+
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        // if birthday hasn't happened yet this year, subtract 1
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+        }
+
+        // prevent negative ages if a future date is picked
+        return age < 0 ? 0 : age;
     }
 
-    const today = new Date();
-    let age = today.getFullYear() - birthdate.getFullYear();
-    const hasHadBirthdayThisYear =
-        today.getMonth() > birthdate.getMonth() ||
-        (today.getMonth() === birthdate.getMonth() && today.getDate() >= birthdate.getDate());
-
-    if (!hasHadBirthdayThisYear) {
-        age -= 1;
+    function updateAge() {
+        ageInput.value = calculateAge(birthdateInput.value);
     }
 
-    return age < 0 ? '—' : String(age);
-};
+    birthdateInput.addEventListener("change", updateAge);
+    birthdateInput.addEventListener("input", updateAge);
+
+    // If the birthdate is prefilled (edit mode), calculate on load
+    updateAge();
+});
 
 if (patientForm && patientTableBody) {
     patientForm.addEventListener('submit', (event) => {
@@ -198,3 +217,135 @@ if (patientForm && patientTableBody) {
         patientForm.reset();
     });
 }
+// Signature pad and auto-fill date
+document.addEventListener("DOMContentLoaded", () => {
+  // -------- Auto-fill today's date --------
+  const consentDate = document.getElementById("consentDate");
+  if (consentDate) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    consentDate.value = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // -------- Signature pad --------
+  const canvas = document.getElementById("signatureCanvas");
+  const signatureData = document.getElementById("signatureData");
+  const clearBtn = document.getElementById("clearSignatureBtn");
+
+  if (!canvas || !signatureData) return;
+
+  const ctx = canvas.getContext("2d");
+  let drawing = false;
+  let hasSignature = false;
+
+  // Resize canvas to match its CSS size (important for crisp lines + correct data)
+  function resizeCanvasToDisplaySize() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Optional: set pen style
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#0f172a";
+  }
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+
+  function startDraw(e) {
+    drawing = true;
+    hasSignature = true;
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+  }
+
+  function draw(e) {
+    if (!drawing) return;
+    const pos = getPos(e);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+  }
+
+  function endDraw() {
+    if (!drawing) return;
+    drawing = false;
+
+    // Save signature image to hidden input (base64 PNG)
+    signatureData.value = canvas.toDataURL("image/png");
+  }
+
+  function clearSignature() {
+    const rect = canvas.getBoundingClientRect();
+    ctx.clearRect(0, 0, rect.width, rect.height);
+    signatureData.value = "";
+    hasSignature = false;
+  }
+
+  // Initial sizing + keep it correct on resize/orientation change
+  resizeCanvasToDisplaySize();
+  window.addEventListener("resize", () => {
+    // If you want to keep existing signature after resize, we'd need to preserve it;
+    // simplest is to clear and re-init:
+    const had = hasSignature;
+    const dataUrl = had ? canvas.toDataURL("image/png") : null;
+
+    resizeCanvasToDisplaySize();
+
+    if (dataUrl) {
+      const img = new Image();
+      img.onload = () => {
+        const rect = canvas.getBoundingClientRect();
+        ctx.drawImage(img, 0, 0, rect.width, rect.height);
+      };
+      img.src = dataUrl;
+    }
+  });
+
+  // Pointer events work for mouse + touch + pen (best for iPad/tablet)
+  canvas.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    canvas.setPointerCapture(e.pointerId);
+    startDraw(e);
+  });
+
+  canvas.addEventListener("pointermove", (e) => {
+    e.preventDefault();
+    draw(e);
+  });
+
+  canvas.addEventListener("pointerup", (e) => {
+    e.preventDefault();
+    endDraw();
+  });
+
+  canvas.addEventListener("pointercancel", () => {
+    endDraw();
+  });
+
+  if (clearBtn) clearBtn.addEventListener("click", clearSignature);
+
+  // Optional: prevent form submit if no signature drawn
+  const form = canvas.closest("form");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      if (!signatureData.value) {
+        e.preventDefault();
+        alert("Por favor, agregue la firma antes de guardar.");
+      }
+    });
+  }
+});

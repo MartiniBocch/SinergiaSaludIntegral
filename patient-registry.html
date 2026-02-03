@@ -10,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="patient-registry.css">
+
 </head>
 <body>
     <header>
@@ -29,207 +31,269 @@
     </header>
 
     <main>
-        <section class="panel-section patients-section">
-            <div class="container panel-grid patients-grid">
-                <div class="panel-card">
+      <section class="panel-section patients-section">
+        <div class="container panel-grid patients-grid">
+          <div class="panel-card">
             <h2>Registro de Paciente</h2>
             <p>Register new patients with essential clinical and administrative details so their care journey starts with complete information.</p    >
 
-            <form id="patientForm" class="stack-form">
+            <form id="patientRegistryForm" class="stack-form">
+
+            <!-- 1) Datos personales -->
+            <section class="form-section" aria-labelledby="sec-datos">
+              <h3 id="sec-datos">Datos personales del paciente</h3>
+            
               <div class="form-row">
-                <div class="form-group">
-                  <label for="patientName">Nombre Completo</label>
+                <div class="form-group span-2">
+                  <label for="patientName">Nombre y apellido</label>
                   <input id="patientName" name="patientName" type="text" required>
-                </div >
-
-                <div class="form-group">
-                  <label for="patientAddress">Dirección</label>
-                  <input id="patientAddress" name="patientAddress" type="text" required>
                 </div>
-
-                <div class="form-group">
-                  <label for="patientGender">Género</label>
+              
+                <div class="form-group span-1">
+                  <label for="patientAge">Edad</label>
+                  <input id="patientAge" name="patientAge" type="number" readonly>
+                </div>
+              
+                <div class="form-group span-1">
+                  <label for="patientGender">Sexo</label>
                   <select id="patientGender" name="patientGender" required>
-                    <option value="" selected disabled>Seleccione el género</option>
-                    <option value="male">Masculino</option>
-                    <option value="female">Femenino</option>
+                    <option value="" selected disabled>Seleccione</option>
+                    <option value="male">M</option>
+                    <option value="female">F</option>
                     <option value="other">Otro</option>
                   </select>
                 </div>
-
-                <div class="form-group">
-                  <label for="patientId">Cédula</label>
-                  <input id="patientId" name="patientId" type="number" placeholder="XXXXXXXX" required>
-                </div>
               </div>
-
+            
               <div class="form-row">
-                <div class="form-group">
-                  <label for="patientBirthdate">Fecha de Nacimiento</label>
-                  <input id="patientBirthdate" name="patientBirthdate" type="date" required>
-                </div>
-
-                <div class="form-group">
+                <div class="form-group span-2">
                   <label for="patientBirthplace">Lugar de nacimiento</label>
                   <input id="patientBirthplace" name="patientBirthplace" type="text" required>
                 </div>
-
-                <div class="form-group">
-                  <label for="patientPhone">Numero telefonico</label>
-                  <input id="patientPhone" name="patientPhone" type="tel" autocomplete="tel" required>
+              
+                <div class="form-group span-1">
+                  <label for="patientBirthdate">Fecha de nacimiento</label>
+                  <input id="patientBirthdate" name="patientBirthdate" type="date" required>
                 </div>
-
-                <div class="form-group">
-                  <label for="patientEmergencyName">Contacto de emergencia</label>
-                  <input id="patientEmergencyName" name="patientEmergencyName" type="text" required>
+              
+                <div class="form-group span-1">
+                  <label for="patientId">Cédula</label>
+                  <input id="patientId" name="patientId" type="text" required>
                 </div>
               </div>
+            
+              <div class="form-row">
+                <div class="form-group span-2">
+                  <label for="patientAddress">Dirección</label>
+                  <input id="patientAddress" name="patientAddress" type="text" required>
+                </div>
+              
+                <div class="form-group span-1">
+                  <label for="patientPhone">Teléfonos</label>
+                  <input id="patientPhone" name="patientPhone" type="tel" required>
+                </div>
+              
+                <div class="form-group span-1">
+                  <label for="patientOccupation">Ocupación</label>
+                  <input id="patientOccupation" name="patientOccupation" type="text">
+                </div>
+              </div>
+            
+              <div class="form-row">
+                <div class="form-group span-2">
+                  <label for="emergencyName">Contacto de emergencia</label>
+                  <input id="emergencyName" name="emergencyName" type="text" required>
+                </div>
+                <div class="form-group span-1">
+                  <label for="emergencyPhone">Teléfono</label>
+                  <input id="emergencyPhone" name="emergencyPhone" type="tel" required>
+                </div>
+                <div class="form-group span-1">
+                  <label for="emergencyRelation">Relación</label>
+                  <input id="emergencyRelation" name="emergencyRelation" type="text" required>
+                </div>
+              </div>
+            </section>
+          
+            <!-- 2) Motivo -->
+            <section class="form-section" aria-labelledby="sec-motivo">
+              <h3 id="sec-motivo">Motivo de consulta</h3>
+              <div class="form-group">
+                <textarea id="reason" name="reason" rows="4" required></textarea>
+              </div>
+            </section>
+          
+            <!-- 3) Enfermedad actual -->
+            <section class="form-section" aria-labelledby="sec-actual">
+              <h3 id="sec-actual">Enfermedad actual</h3>
+              <div class="form-group">
+                <textarea id="currentIllness" name="currentIllness" rows="5"></textarea>
+              </div>
+            </section>
+          
+            <!-- 4) Antecedentes -->
+            <section class="form-section" aria-labelledby="sec-antecedentes">
+              <h2 id="sec-antecedentes">Antecedentes médicos personales</h2>
+            
+              <div class="history-grid">
+                <!-- Put your existing fieldsets here (cardio, respiratorio, etc.) -->
+                <!-- Keep each body system as its own <fieldset> -->
+              </div>
+            </section>
+          
+            <!-- 5) Interconsulta -->
+            <section class="form-section" aria-labelledby="sec-interconsulta">
+              <h3 id="sec-interconsulta">Médicos tratantes (interconsulta)</h3>
+              <div class="form-group">
+                <textarea id="treatingDoctors" name="treatingDoctors" rows="3" placeholder="Nombre, especialidad, contacto..."></textarea>
+              </div>
+            </section>
+          
+            <!-- 6) Hábitos -->
+            <section class="form-section" aria-labelledby="sec-habitos">
+              <h3 id="sec-habitos">Hábitos</h3>
+              <fieldset class="habits-fieldset">
+                <legend>Seleccione los hábitos que apliquen</legend>
+                
+                <div class="habits-grid">
+                  <label><input type="checkbox" name="habits[]" value="Fumar"> Fumar</label>
+                  <label><input type="checkbox" name="habits[]" value="Consumo de drogas"> Consumo de drogas</label>
+                  <label><input type="checkbox" name="habits[]" value="Bruxismo"> Bruxismo</label>
+                  <label><input type="checkbox" name="habits[]" value="Bruxomanía"> Bruxomanía</label>
+                  <label><input type="checkbox" name="habits[]" value="Onicofagia"> Onicofagia</label>
+                  <label><input type="checkbox" name="habits[]" value="Queilofagia"> Queilofagia</label>
+                  <label><input type="checkbox" name="habits[]" value="Uso de palillos"> Uso de palillos</label>
+                  <label><input type="checkbox" name="habits[]" value="Morder objetos"> Morder objetos</label>
+                  <label><input type="checkbox" name="habits[]" value="Respirador bucal"> Respirador bucal</label>
+                  <label><input type="checkbox" name="habits[]" value="Succión digital"> Succión digital</label>
+                </div>
+              </fieldset>
+            </section>
+          
+            <!-- 7) Gineco-obstetra (optional) -->
+            <section class="form-section" aria-labelledby="sec-gineco">
+              <h3 id="sec-gineco">Gineco-obstetra</h3>
+            
+              <div class="form-row">
+                <div class="form-group span-1">
+                  <label for="pregnant">¿Está embarazada?</label>
+                  <select id="pregnant" name="pregnant">
+                    <option value="" selected>—</option>
+                    <option value="yes">Sí</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              
+                <div class="form-group span-1">
+                  <label for="menopause">Menopausia</label>
+                  <select id="menopause" name="menopause">
+                    <option value="" selected>—</option>
+                    <option value="yes">Sí</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              
+                <div class="form-group span-2">
+                  <label for="contraception">Método anticonceptivo</label>
+                  <input id="contraception" name="contraception" type="text">
+                </div>
+              </div>
+            </section>
+          
+            <!-- 8) Odontodiagrama -->
+            <section class="form-section" aria-labelledby="sec-odonto">
+              <h3 id="sec-odonto">Odontodiagrama</h3>
+              <div class="odontogram-wrapper"> 
+                <img src="/img/Odontodiagrama.png" alt="Odontodiagrama placeholder" class="odontodiagrama-img">
+              </div>
+            </section>
+          
+            <!-- 9) Secuencia de tratamiento -->
+            <section class="form-section" aria-labelledby="sec-tratamiento">
+              <h3 id="sec-tratamiento">Secuencia de tratamiento</h3>
+              <div class="form-group">
+                <textarea id="treatmentSequence" name="treatmentSequence" rows="6"></textarea>
+              </div>
+            </section>
+          
+            <!-- 10) Consent -->
+            <section class="form-section" aria-labelledby="sec-consent">
+              <h3 id="sec-consent">Consentimiento</h3>
+
+              <p class="consent-text">
+                Yo
+                <input class="consent-inline" id="consentName" name="consentName" type="text" placeholder="Nombre completo" required>
+                de C.I
+                <input class="consent-inline" id="consentCI" name="consentCI" type="text" placeholder="Cédula" required>
+                declaro haber sido informado(a) de forma clara y comprensible sobre mi diagnóstico, los riesgos, beneficios,
+                posibles complicaciones (intra y postoperatorias) y alternativas de los tratamientos explicados por mi odontólogo(a).
+                <br><br>
+                Entiendo los riesgos inherentes a la práctica odontológica y confirmo que toda la información sobre mi historial
+                médico es verdadera y completa. Por medio de la presente, autorizo a la Dra. a realizar los procedimientos
+                odontológicos necesarios para mi caso.
+              </p>
 
               <div class="form-row">
-                <div class="form-group">
-                  <label for="patientEmergencyPhone">Teléfono de emergencia</label>
-                  <input id="patientEmergencyPhone" name="patientEmergencyPhone" type="tel" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="patientEmail">Email</label>
-                  <input id="patientEmail" name="patientEmail" type="email" autocomplete="email" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="patientInsurance">Insurance / Plan</label>
-                  <input id="patientInsurance" name="patientInsurance" type="text" placeholder="Provider or private" required>
+                <div class="form-group span-2">
+                  <label for="consentDate">Fecha</label>
+                  <input id="consentDate" name="consentDate" type="date" readonly required>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="patientReason">Motivo de consulta</label>
-                <textarea id="patientReason" name="patientReason" rows="4" placeholder="Allergies, chronic conditions, or important alerts for the care team." required></textarea>
+                <label for="signatureCanvas">Firma</label>
+
+                <div class="signature-box">
+                  <canvas id="signatureCanvas" class="signature-canvas" aria-label="Área de firma"></canvas>
+                </div>
+
+                <div class="signature-actions">
+                  <button type="button" class="btn btn-outline signature-clear" id="clearSignatureBtn">
+                    Limpiar firma
+                  </button>
+                </div>
+
+                <!-- This hidden input will store the signature as a data URL (base64 PNG) -->
+                <input type="hidden" id="signatureData" name="signatureData" required>
+                <p class="helper-text">Firme con el dedo o lápiz en la tableta.</p>
               </div>
+            </section>
 
-              <div class="form-group">
-                <h3>Antecedentes Médicos Personales</h3>
+            <button class="btn" type="submit">Guardar registro</button>
+          </form>
 
-                <fieldset>
-                    <legend>Cardiovascular</legend>
-                    <label><input type="checkbox" name="cardio[]" value="Hipertensión"> Hipertensión</label>
-                    <label><input type="checkbox" name="cardio[]" value="Hipotensión"> Hipotensión</label>
-                    <label><input type="checkbox" name="cardio[]" value="Taquicardia"> Taquicardia</label>
-                    <label><input type="checkbox" name="cardio[]" value="Angina de pecho"> Angina de P.</label>
-                    <label><input type="checkbox" name="cardio[]" value="Infarto"> Infarto</label>
-                    <label><input type="checkbox" name="cardio[]" value="Insuficiencia cardiaca"> Insuficiencia C.</label>
-                    <label><input type="checkbox" name="cardio[]" value="Disnea"> Disnea</label>
-                    <label>Otro: <input type="text" name="cardio_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Endocrinos</legend>
-                  <label><input type="checkbox" name="endocrino[]" value="Hipertiroidismo"> Hipertiroidismo</label>
-                  <label><input type="checkbox" name="endocrino[]" value="Hipotiroidismo"> Hipotiroidismo</label>
-                  <label><input type="checkbox" name="endocrino[]" value="Diabetes"> Diabetes</label>
-                  <label>Otro: <input type="text" name="endocrino_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Gastrointestinales</legend>
-                  <label><input type="checkbox" name="gastro[]" value="Gastritis"> Gastritis</label>
-                  <label><input type="checkbox" name="gastro[]" value="Reflujo gástrico"> Reflujo gástrico</label>
-                  <label><input type="checkbox" name="gastro[]" value="Úlceras gástricas"> Úlceras gástricas</label>
-                  <label>Otro: <input type="text" name="gastro_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Respiratorio</legend>
-                  <label><input type="checkbox" name="resp[]" value="Sinusitis"> Sinusitis</label>
-                  <label><input type="checkbox" name="resp[]" value="Asma"> Asma</label>
-                  <label><input type="checkbox" name="resp[]" value="EPOC"> EPOC</label>
-                  <label><input type="checkbox" name="resp[]" value="Rinitis"> Rinitis</label>
-                  <label><input type="checkbox" name="resp[]" value="Neumonía"> Neumonía</label>
-                  <label>Otro: <input type="text" name="resp_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Infecto-contagiosas</legend>
-                  <label><input type="checkbox" name="infecto[]" value="Tuberculosis"> Tuberculosis</label>
-                  <label><input type="checkbox" name="infecto[]" value="Sífilis"> Sífilis</label>
-                  <label><input type="checkbox" name="infecto[]" value="SIDA"> SIDA</label>
-                  <label><input type="checkbox" name="infecto[]" value="VIH"> VIH</label>
-                  <label><input type="checkbox" name="infecto[]" value="Hepatitis"> Hepatitis A-B-C</label>
-                  <label><input type="checkbox" name="infecto[]" value="Herpes"> Herpes</label>
-                  <label><input type="checkbox" name="infecto[]" value="Influenza"> Influenza</label>
-                  <label>Otro: <input type="text" name="infecto_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Renales</legend>
-                  <label><input type="checkbox" name="renal[]" value="Cálculos renales"> Cálculos R.</label>
-                  <label><input type="checkbox" name="renal[]" value="Insuficiencia renal"> Insuficiencia renal</label>
-                  <label>Otro: <input type="text" name="renal_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Alergias</legend>
-                  <label><input type="checkbox" name="alergias[]" value="Medicamentos"> Medicamentos</label>
-                  <label><input type="checkbox" name="alergias[]" value="Yodo"> Yodo</label>
-                  <label><input type="checkbox" name="alergias[]" value="Alimentos"> Alimentos</label>
-                  <label><input type="checkbox" name="alergias[]" value="Látex"> Látex</label>
-                  <label>Otro: <input type="text" name="alergias_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Neurológicos</legend>
-                  <label><input type="checkbox" name="neuro[]" value="Convulsiones"> Convulsiones</label>
-                  <label><input type="checkbox" name="neuro[]" value="Parkinson"> Parkinson</label>
-                  <label><input type="checkbox" name="neuro[]" value="Alzheimer"> Alzheimer</label>
-                  <label><input type="checkbox" name="neuro[]" value="ACV"> ACV</label>
-                  <label><input type="checkbox" name="neuro[]" value="Tic"> Tic</label>
-                  <label><input type="checkbox" name="neuro[]" value="Epilepsia"> Epilepsia</label>
-                  <label>Otro: <input type="text" name="neuro_other"></label>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Intervenciones quirúrgicas</legend>
-                  <input type="text" name="cirugias" placeholder="Describir">
-                </fieldset>
-
-                <fieldset>
-                  <legend>Cáncer</legend>
-                  <input type="text" name="cancer" placeholder="Especificar">
-                </fieldset>
-              </div>
-
-              <button class="btn" type="submit">Register Patient</button>
-            </form>
           </div>
 
-          <div class="panel-card panel-card-muted">
-            <div class="panel-card-header">
-              <h3>Registered Patients</h3>
+          <div class="panel-card">
+            <div class="panel-card panel-card-muted">
+              <div class="panel-card-header">
+                <h3>Registered Patients</h3>
               <p>This quick registry helps the front desk and clinicians confirm identity, contact details, and key alerts.</p>
-            </div>
+              </div>
 
-            <div class="table-wrapper">
-              <table class="data-table" id="patientTable">
-                <thead>
-                  <tr>
-                    <th scope="col">Patient</th>
-                    <th scope="col">Document</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Insurance</th>
-                    <th scope="col">Alerts</th>
-                  </tr>
-                </thead>
-                <tbody id="patientTableBody">
-                  <tr id="patientEmpty">
-                    <td colspan="6" class="empty-state">No patients registered yet.</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="table-wrapper">
+                <table class="data-table" id="patientTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Patient</th>
+                      <th scope="col">Document</th>
+                      <th scope="col">Age</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Insurance</th>
+                      <th scope="col">Alerts</th>
+                    </tr>
+                  </thead>
+                  <tbody id="patientTableBody">
+                    <tr id="patientEmpty">
+                      <td colspan="6" class="empty-state">No patients registered yet.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-
         </div>
+
       </section>
     </main>
 

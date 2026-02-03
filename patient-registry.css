@@ -1,0 +1,45 @@
+/* =========================
+    patient-registry.css
+========================= */
+
+/* Checklist */
+.stack-form fieldset {
+    border: 1px solid #ddd;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+}
+
+.stack-form legend {
+    font-weight: 700;
+    padding: 0 6px;
+}
+
+/* Registry table */
+.table-wrapper { overflow-x: auto; }
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.data-table thead th {
+    text-align: left;
+    padding: 14px;
+    background: rgba(11, 110, 153, 0.08);
+    color: var(--dark-color);
+    font-weight: 700;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.data-table tbody td {
+    padding: 14px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    color: #334155;
+    vertical-align: top;
+}
+
+.data-table tbody tr:hover td {
+    background: rgba(11, 110, 153, 0.04);
+}
