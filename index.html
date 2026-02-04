@@ -194,10 +194,25 @@
       const encodedMessage = encodeURIComponent(message);
       const whatsappNumber = "584248881106"; // Numero de WhatsApp de destino
     
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-        "_blank"
-      );
+       // 1) URL principal
+      const url1 = `https://wa.me/${whatsappNumber}?text=${message}`;
+      // 2) Fallback (a veces Opera abre mejor esta)
+      const url2 = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${message}`;
+
+      // Creamos un <a> real y lo "clickeamos" (más compatible con Opera)
+      const a = document.createElement("a");
+      a.href = url1;
+      a.target = "_self"; // mobile-first: misma pestaña abre mejor la app
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      // Si Opera bloquea wa.me, intentamos el fallback al poco tiempo
+      setTimeout(() => {
+        // si el usuario ya salió a WhatsApp, esto no se ejecuta (perfecto).
+        window.location.href = url2;
+      }, 800);
     });
   </script>
 
