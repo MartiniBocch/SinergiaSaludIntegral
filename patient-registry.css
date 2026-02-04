@@ -44,6 +44,7 @@ fieldset input[type="text"]:focus {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px 24px; /* row / column */
     margin-top: 14px;
+    margin-bottom: 14px;
 }
 
 
