@@ -99,37 +99,37 @@
 
         <form class="contact-form" id="contactForm">
           <div class="form-group">
-            <label for="name">Full Name</label>
+            <label for="name">Nombre</label>
             <input id="name" name="name" type="text" autocomplete="name" required>
           </div>
 
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email">Correo electronico</label>
             <input id="email" name="email" type="email" autocomplete="email" required>
           </div>
 
           <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 123-4567" required>
+            <label for="phone">Número de teléfono</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(414) 123-4567" required>
           </div>
 
           <div class="form-group">
-            <label for="service">Requested Service</label>
+            <label for="service">Servicio solicitado</label>
             <select id="service" name="service" required>
-              <option value="" selected disabled>Select the visit type</option>
-              <option value="dental-preventive">Preventive dental care</option>
-              <option value="dental-restorative">Restorative dental treatment</option>
-              <option value="medical-consultation">Medical consultation</option>
-              <option value="care-coordination">Integrated care coordination</option>
+              <option value="" selected disabled>Seleccione el servicio que busca</option>
+              <option value="dental-preventive">Cuidado preventivo dental</option>
+              <option value="dental-restorative">Tratamiento dental restaurativo</option>
+              <option value="medical-consultation">Consulta médica</option>
+              <option value="care-coordination">Coordinación de atención integral</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="details">Clinical Notes or Requests</label>
-            <textarea id="details" name="details" rows="5" placeholder="Symptoms, goals for the visit, medications, or anything the care team should review." required></textarea>
+            <label for="details">Peticion o detalles adicionales</label>
+            <textarea id="details" name="details" rows="5" placeholder="Sintoma, necesidades especiales, o cualquier otro detalle relevante." required></textarea>
           </div>
 
-          <button class="btn" type="submit">Send Request</button>
+          <button class="btn" type="submit">Enviar solicitud</button>
         </form>
       </div>
     </section>
@@ -173,6 +173,33 @@
       <p>&copy; <span id="year"></span> Sinergia Salud Integral. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // stop normal form submit
+    
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const service = document.getElementById("service").value;
+      const details = document.getElementById("details").value;
+    
+      const message = `
+        Mensaje automatizado
+        ------------------------
+        Marico el que me lea
+        ------------------------
+        `;
+    
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappNumber = "584248881106"; // Numero de WhatsApp de destino
+    
+      window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+        "_blank"
+      );
+    });
+  </script>
 
   <script src="script.js" defer></script>
 </body>
