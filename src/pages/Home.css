@@ -53,8 +53,8 @@
 }
 
 .services h2 {
-  text-align: center;
-  font-size: 38px;
+    text-align: center;
+    font-size: 38px;
 }
 
 .services-grid {
@@ -147,12 +147,4 @@
 .contact-form {
   max-width: 680px;
   margin: 0 auto;
-}
-
-/* Home responsive */
-@media (max-width: 768px) {
-  .hero { padding: 150px 0 90px; }
-  .hero h2 { font-size: 40px; }
-  .about-content { flex-direction: column; }
-  .about-text, .about-image { width: 100%; }
 }

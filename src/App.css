@@ -1,7 +1,3 @@
-/* =========================
-    base.css (shared)
-========================= */
-
 /* Global Styles */
 :root {
     --primary-color: #0b6e99;
@@ -31,6 +27,16 @@ main { padding-top: 110px; }
     margin: 0 auto;
     padding: 0 20px;
 }
+
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white-color);
+    padding: 80px 0;
+    text-align: center;
+}
+.hero h2 { color: var(--white-color); font-size: 42px; }
+.hero p { color: rgba(255, 255, 255, 0.9); font-size: 18px; }
+
 
 h1, h2, h3 {
     margin-bottom: 20px;
