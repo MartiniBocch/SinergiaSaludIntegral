@@ -18,9 +18,9 @@ function App() {
           <nav aria-label="Primary">
             <ul className="tab-nav">
               {/* Note: In React, we will eventually use 'React Router' for these links */}
-              <li><a className="tab-link active" href="/">Principal</a></li>
-              <li><a className="tab-link" href="/notes">Appointment Notes</a></li>
-              <li><a className="tab-link" href="/registry">Patient Registry</a></li>
+              <li><Link className="tab-link active" to="/">Principal</Link></li>
+              <li><Link className="tab-link" to="/notes">Appointment Notes</Link></li>
+              <li><Link className="tab-link" to="/registry">Patient Registry</Link></li>
             </ul>
           </nav>
         </div>
