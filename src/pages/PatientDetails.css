@@ -1,0 +1,130 @@
+/* src/pages/PatientDetails.css */
+
+.detail-page {
+    background-color: #f3f7fb;
+    min-height: 100vh;
+    padding-bottom:50px;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.header-content {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+    border-left: 6px solid var(--primary-color);
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    flex: 1;
+    text-align: left;
+}
+
+.header-content h1 {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.patient-meta {
+    margin-top: 8px;
+    display: flex;
+    gap: 15px;
+    color: var(--text-color);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-title { color: var(--primary-color); }
+.emergency-title { color: var(--accent-color); }
+
+.data-box {
+    background: #f8fbff;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(11, 110, 153, 0.08);
+}
+
+.data-box.highlight {
+    background: #eef7ff;
+    border-left: 4px solid var(--primary-color);
+}
+
+.medical-history-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.history-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--gray-color);
+    transition: transform 0.2s ease;
+}
+
+.history-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.history-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.history-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.history-card li {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.empty-text {
+    color: #adb5bd;
+    font-style: italic;
+}
+
+.loading-state {
+    text-align: center;
+    padding: 100px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .detail-header { flex-direction: column; align-items: flex-start; }
+    .info-grid { grid-template-columns: 1fr; }
+}

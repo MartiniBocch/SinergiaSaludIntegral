@@ -6,6 +6,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth'; // Added signOut he
 import PatientRegistry from './pages/PatientRegistry';
 import AppointmentNotes from './pages/AppointmentNotes';
 import PatientList from './pages/PatientList';
+import PatientDetails from './pages/PatientDetails';
 import './App.css'
 import Login from './pages/login';
 
@@ -81,6 +82,10 @@ function App() {
           <Route
             path="/patients"
             element={user ? <PatientList /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/patients/:dni"
+            element={user ? <PatientDetails /> : <Navigate to="/login" />}
           />
 
           {/* Catch-all */}

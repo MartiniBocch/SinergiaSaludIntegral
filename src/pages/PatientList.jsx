@@ -1,31 +1,26 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+
 
 export default function PatientList() {
   const [patients, setPatients] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    console.log("1. El componente PatientList se ha montado");
     // Escucha la colección "patients" en tiempo real, ordenada por fecha de creación
     const q = query(collection(db, "patients"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      console.log("2. Firebase ha respondido. Documentos encontrados:", snapshot.size);
-
-      if (snapshot.empty) {
-      console.log("3. La colección 'patients' existe pero está VACÍA en Firebase.");
-      }
 
       const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      console.log("4. Datos finales procesados:", data);
       setPatients(data);
     });
     return () => unsubscribe();
   }, []);
 
   // Filtrado instantáneo por nombre o cédula
-  const filtered = patients.filter(p => 
+  const filtered = patients.filter(p =>
     p.name?.toLowerCase().includes(search.toLowerCase()) ||
     p.dni?.includes(search)
   );
@@ -64,7 +59,7 @@ export default function PatientList() {
                     </a>
                   </td>
                   <td style={{ padding: '15px', textAlign: 'center' }}>
-                    <button className="btn" style={{ padding: '5px 10px', fontSize: '12px' }}>Ver Ficha</button>
+                    <Link to={`/patients/${p.dni}`} className="btn-small">Ver Ficha</Link>
                   </td>
                 </tr>
               ))}
