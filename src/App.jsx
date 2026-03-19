@@ -1,12 +1,29 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import Home from './pages/Home';
+import { useState, useEffect } from 'react';
+import { auth } from './firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth'; // Added signOut here too
 import PatientRegistry from './pages/PatientRegistry';
 import AppointmentNotes from './pages/AppointmentNotes';
-import { useState } from 'react'
 import './App.css'
-import Home from './pages/Home';
+import Login from './pages/login';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false); // Stop showing 'Cargando' once we know the status
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <div className="App"><p>Cargando...</p></div>;
+  }
+
 
   return (
     <div className="App">
@@ -17,10 +34,27 @@ function App() {
           </div>
           <nav aria-label="Primary">
             <ul className="tab-nav">
-              {/* Note: In React, we will eventually use 'React Router' for these links */}
+              {/* Always visible */}
               <li><Link className="tab-link active" to="/">Principal</Link></li>
-              <li><Link className="tab-link" to="/notes">Appointment Notes</Link></li>
-              <li><Link className="tab-link" to="/registry">Patient Registry</Link></li>
+
+              {/* Visible only when user is authenticated */}
+              {user && (
+                <>
+                  <li><Link className="tab-link" to="/notes">Appointment Notes</Link></li>
+                  <li><Link className="tab-link" to="/registry">Patient Registry</Link></li>
+                  <li>
+                    <button 
+                      className="tab-link"
+                      onClick={() => auth.signOut()}> Signout
+                    </button>
+                  </li>
+                </>
+              )}
+
+              {/* Visible only when user is NOT authenticated */}
+              {!user && (
+                <li><Link className="tab-link" to="/login">Accesso Clinica</Link></li>
+              )}
             </ul>
           </nav>
         </div>
@@ -28,9 +62,22 @@ function App() {
 
       <main>
         <Routes>
+          {/* Public Pages */}
           <Route path="/" element={<Home />} />
-          <Route path="/registry" element={<PatientRegistry />} />
-          <Route path="/notes" element={<AppointmentNotes />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* Private Pages (Redirects to login if user is null) */}
+          <Route
+            path="/registry"
+            element={user ? <PatientRegistry /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/notes"
+            element={user ? <AppointmentNotes /> : <Navigate to="/login" />}
+          />
+
+          {/* Catch-all */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </main>
 
