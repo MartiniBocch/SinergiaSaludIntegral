@@ -9,7 +9,7 @@ export default function Home() {
         <h2>Cuidado integral para tu salud</h2>
         <p>Combinamos excelencia dental y seguimiento médico en una sola clínica para que tu plan de atención sea claro, coordinado y compasivo.</p>
         <div className="hero-actions">
-          <a className="btn" href="#clinic-contact">Agenda una Cita</a>
+          <a className="btn" href="#clinic-about">Agenda una Cita</a>
           <a className="btn btn-outline" href="#clinic-services">Explora Nuestros Servicios</a>
         </div>
       </div>
