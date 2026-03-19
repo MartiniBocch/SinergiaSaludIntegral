@@ -5,6 +5,7 @@ import { auth } from './firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth'; // Added signOut here too
 import PatientRegistry from './pages/PatientRegistry';
 import AppointmentNotes from './pages/AppointmentNotes';
+import PatientList from './pages/PatientList';
 import './App.css'
 import Login from './pages/login';
 
@@ -41,9 +42,10 @@ function App() {
               {user && (
                 <>
                   <li><Link className="tab-link" to="/notes">Appointment Notes</Link></li>
-                  <li><Link className="tab-link" to="/registry">Patient Registry</Link></li>
+                  <li><Link className="tab-link" to="/registry">Registro de Pacientes</Link></li>
+                  <li><Link className="tab-link" to="/patients">Lista de Pacientes</Link></li>
                   <li>
-                    <button 
+                    <button
                       className="tab-link"
                       onClick={() => auth.signOut()}> Signout
                     </button>
@@ -74,6 +76,11 @@ function App() {
           <Route
             path="/notes"
             element={user ? <AppointmentNotes /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            path="/patients"
+            element={user ? <PatientList /> : <Navigate to="/login" />}
           />
 
           {/* Catch-all */}
