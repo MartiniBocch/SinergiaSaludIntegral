@@ -76,7 +76,7 @@ export default function PatientRegistry() {
               
                 <div className="form-group span-1">
                   <label htmlFor="age">Edad</label>
-                  <input id="age" name="age" type="number" readOnly />
+                  <input id="age" name="age" type="number" required />
                 </div>
               
                 <div className="form-group span-1">
